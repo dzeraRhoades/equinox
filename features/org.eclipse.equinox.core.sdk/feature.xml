@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.equinox.core.sdk"
+      label="%featureName"
+      version="3.25.0.qualifier"
+      provider-name="%providerName"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="org.eclipse.equinox.core.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.equinox.core.feature.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.launcher"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.launcher.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.supplement"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.supplement.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.transforms.xslt"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.transforms.xslt.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.transforms.hook"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.transforms.hook.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.concurrent"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.concurrent.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.win32.x86_64"
+         os="win32"
+         arch="x86_64"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.win32.x86_64.source"
+         os="win32"
+         arch="x86_64"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.linux"
+         os="linux"
+         arch="x86_64"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.linux.source"
+         os="linux"
+         arch="x86_64"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.macosx"
+         os="macosx"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.macosx.source"
+         os="macosx"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.ui"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.security.ui.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.region"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.region.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.log.stream"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.log.stream.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.console.ssh"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.console.ssh.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.console.jaas.fragment"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.bidi"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.bidi.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.caching"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.caching.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.caching.j9"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.caching.j9.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.hook"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.hook.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.log.stream"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.log.stream.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.pushstream"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.pushstream.source"
+         version="0.0.0"/>
+
+</feature>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.equinox.compendium.sdk"
+      label="%featureName"
+      version="3.23.0.qualifier"
+      provider-name="%providerName"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <plugin
+         id="org.eclipse.equinox.app"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.app.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.coordinator"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.coordinator.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.cm"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.cm.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.device"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.device.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.event"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.event.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.metatype"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.metatype.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.preferences"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.preferences.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.prefs"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.prefs.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.useradmin"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.useradmin.source"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.coordinator"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.coordinator.source"
+         version="0.0.0"/>
+
+</feature>

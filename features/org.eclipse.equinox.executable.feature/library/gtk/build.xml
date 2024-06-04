@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_eclipse" basedir=".">
+
+<condition property="build-natives">
+	<matches pattern="^${ws}.${os}.${arch}$" string="${native}"/>
+</condition>
+
+<target name="build_eclipse" if="build-natives">
+	<exec dir="." executable="sh">
+		<arg line="${basedir}/build.sh"/>
+		<arg line="install"/>
+		<arg line="-rt_bin ${rt.equinox.binaries.loc}"/>
+		<arg line="-ws ${ws}"/>
+		<arg line="-os ${os}"/>
+		<arg line="-arch ${arch}"/>
+	</exec>
+</target>
+
+<target name="build_eclipse-docker" if="build-natives">
+	<exec dir="." executable="docker">
+		<arg line="rm equinox"/>
+	</exec>
+	<exec dir="." executable="docker">
+		<arg line="run --name equinox"/>
+		<arg line="-v ${basedir}/..:/equinox/library/"/>
+		<arg line="${docker-image}"/>
+		<arg line="./build.sh install -ws gtk -os linux -arch x86_64 -rt_bin rt_bin"/>
+	</exec>
+	<mkdir dir="${rt.equinox.binaries.loc}" />
+	<echo message="path: ${rt.equinox.binaries.loc}" />
+	<copy todir="${rt.equinox.binaries.loc}" >  
+    	<fileset dir="./rt_bin" includes="**"/>  
+	</copy>
+	<exec dir="." executable="docker">
+		<arg line="cp"/>
+		<arg line="equinox:/equinox/rt_bin/"/>
+		<arg line="${rt.equinox.binaries.loc}"/>
+	</exec>
+	<exec dir="." executable="docker">
+		<arg line="rm equinox"/>
+	</exec>
+</target>
+
+<target name="clean" if="build-natives">
+	<tstamp/>
+	<exec dir="." executable="sh">
+		<arg line="${basedir}/build.sh"/>
+		<arg line="clean"/>
+	</exec>
+</target>
+
+</project>

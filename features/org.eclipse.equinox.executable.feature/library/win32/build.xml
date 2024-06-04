@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build_eclipse" basedir=".">
+
+<condition property="build-natives">
+	<matches pattern="^${ws}.${os}.${arch}$" string="${native}"/>
+</condition>
+
+<target name="build_eclipse" if="build-natives">
+	<mkdir dir="${rt.equinox.binaries.loc}/org.eclipse.equinox.executable/bin/${ws}/${os}/${arch}" />
+	<mkdir dir="${rt.equinox.binaries.loc}/org.eclipse.equinox.launcher.${ws}.${os}.${arch}" />
+	<exec dir="." executable="${basedir}\build.bat">
+		<arg line="install -rt_bin ${rt.equinox.binaries.loc}"/>
+	</exec>
+</target>
+
+<target name="clean" if="build-natives">
+	<tstamp/>
+	<exec dir="." executable="${basedir}\build.bat">
+		<arg line="clean"/>
+	</exec>
+</target>
+
+</project>

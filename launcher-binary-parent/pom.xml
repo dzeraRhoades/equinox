@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2012, 2018 Eclipse Foundation and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Distribution License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/org/documents/edl-v10.php
+ 
+  Contributors:
+     Igor Fedorenko - initial implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+<parent>
+    <groupId>org.eclipse.equinox</groupId>
+    <artifactId>parent</artifactId>
+    <version>${revision}</version>
+</parent>
+
+  <artifactId>launcher-binary-parent</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <build-docker></build-docker>
+    <inventory-directory>../../features/org.eclipse.equinox.executable.feature/library/libinventory</inventory-directory>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <environments>
+            <environment>
+              <os>${os}</os>
+              <ws>${ws}</ws>
+              <arch>${arch}</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-launcher-natives</id>
+            <phase>process-resources</phase>
+            <configuration>
+              <property name="feature.base" value="."/>
+              <target>
+                <copy todir="${project.build.directory}" overwrite="true">
+                  <fileset dir="${rt.equinox.binaries.loc}/${project.artifactId}">
+                    <include name="*.so"/>
+                    <include name="*.dll"/>
+                    <include name="*.dylib"/>
+                  </fileset>
+                </copy>
+                <chmod file="${project.build.directory}/*.so" perm="755" verbose="true"/>
+                <chmod file="${project.build.directory}/*.dylib" perm="755" verbose="true"/>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
+          </archive>
+          <finalName>${project.artifactId}</finalName>
+          <additionalFileSets>
+            <fileSet>
+              <directory>${project.build.directory}</directory>
+              <includes>
+                <include>*.so</include>
+                <include>*.dll</include>
+                <include>*.dylib</include>
+              </includes>
+            </fileSet>
+          </additionalFileSets>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <id>package-bundle</id>
+            <goals>
+              <goal>package-plugin</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <!--    use this profile to build natives in dicker container (currently available only for linux)-->
+    <profile>
+      <id>build-docker</id>
+      <activation>
+        <property>
+          <name>docker</name>
+        </property>
+      </activation>
+      <properties>
+        <build-docker>-docker</build-docker>
+      </properties>
+    </profile>
+    <profile>
+      <id>inventory-windows.x86_64</id>
+      <activation>
+        <property>
+          <name>native</name>
+          <value>win32.win32.x86_64</value>
+        </property>
+      </activation>
+      <properties>
+        <inventory-library-version>1.9.3-6</inventory-library-version>
+        <libinventory>com._1c.packaging.inventory.nativelib.windows.x86_64</libinventory>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-inventory-library-${os}-${arch}</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <outputDirectory>${inventory-directory}</outputDirectory>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com._1c.packaging.inventory</groupId>
+                      <artifactId>${libinventory}</artifactId>
+                      <version>${inventory-library-version}</version>
+                      <type>zip</type>
+                      <classifier>windows-x86_64</classifier>
+                      <overWrite>true</overWrite>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!--    this profile defines libinventory artifact name depending on native value-->
+    <profile>
+      <id>inventory-linux.x86_64</id>
+      <properties>
+        <inventory-library-version>1.9.3-6</inventory-library-version>
+        <libinventory>com._1c.packaging.inventory.nativelib.linux.x86_64</libinventory>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-inventory-library-${os}-${arch}</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <outputDirectory>${inventory-directory}</outputDirectory>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com._1c.packaging.inventory</groupId>
+                      <artifactId>${libinventory}</artifactId>
+                      <version>${inventory-library-version}</version>
+                      <type>tar.gz</type>
+                      <classifier>linux-x86_64</classifier>
+                      <overWrite>true</overWrite>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>inventory-macos.x86_64</id>
+      <properties>
+        <inventory-library-version>1.10.0-1</inventory-library-version>
+        <libinventory>com._1c.packaging.inventory.nativelib.macos.x86_64</libinventory>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-inventory-library-${os}-${arch}</id>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <outputDirectory>${inventory-directory}</outputDirectory>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com._1c.packaging.inventory</groupId>
+                      <artifactId>${libinventory}</artifactId>
+                      <version>${inventory-library-version}</version>
+                      <type>tar.gz</type>
+                      <classifier>macos-x86_64</classifier>
+                      <overWrite>true</overWrite>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!--
+        This profile is enabled when the "native" system property is defined.
+        If the "ws.os.arch" triplet given in the "native" system property matches
+        the "ws", "os" and "arch" properties set by the current fragment, then the
+        ant script will trigger the build of the native parts for that fragment.
+      -->
+      <id>build-natives</id>
+      <activation>
+        <property>
+          <name>native</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>compile-launcher-natives</id>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <target>
+                    <ant dir="../../features/org.eclipse.equinox.executable.feature/library/${ws}/" target="build_eclipse${build-docker}"/>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>clean-launcher-natives</id>
+                <phase>clean</phase>
+                <configuration>
+                  <target>
+                    <ant dir="../../features/org.eclipse.equinox.executable.feature/library/${ws}/" target="clean"/>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

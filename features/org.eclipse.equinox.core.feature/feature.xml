@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.equinox.core.feature"
+      label="%featureName"
+      version="1.15.0.qualifier"
+      provider-name="%providerName"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0">
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <plugin
+         id="org.eclipse.osgi"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.osgi.services"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.osgi.util"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.common"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.registry"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.simpleconfigurator"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.app"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.osgi.compatibility.state"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.equinox.console"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.apache.felix.gogo.command"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.apache.felix.gogo.runtime"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.apache.felix.gogo.shell"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.function"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.promise"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.measurement"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.position"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.util.xml"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.cm"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.component"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.device"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.event"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.metatype"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.provisioning"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.upnp"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.useradmin"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.osgi.service.wireadmin"
+         version="0.0.0"/>
+
+</feature>
